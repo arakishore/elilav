@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+registration
+</ion-content>
+<ion-footer >
+  <ion-toolbar class="footer-toolbar">
+     <ion-tabs>
+         <ion-tab-bar class="tab-bar farmer-tab-bar" slot="bottom" >
+           <ion-tab-button (click)="goToproductlist();" tab="home">
+            <ion-icon src="assets/images/ring.svg" class="ion-no-margin ion-no-padding"></ion-icon>
+             <ion-label class="tab-title">Product</ion-label>
+           </ion-tab-button>
+           <ion-tab-button (click)="goToExhibitionPage();"   tab="exhibition">
+            <ion-icon src="assets/images/diamond.svg" class="ion-no-margin ion-no-padding"></ion-icon>
+             <ion-label class="tab-title">Exhibition</ion-label>
+           </ion-tab-button>
+           <ion-tab-button  (click)="goToMyProfile();" tab="my-profile">
+            <ion-icon src="assets/images/user.svg" class="ion-no-margin ion-no-padding"></ion-icon>
+             <ion-label class="tab-title">My Profile</ion-label>
+           </ion-tab-button>
+           <ion-tab-button (click)="goToEnquiry();" tab="enquiry">
+            <ion-icon src="assets/images/enquiry.svg" class="ion-no-margin ion-no-padding"></ion-icon>
+             <ion-label class="tab-title">Enquiry</ion-label>
+           </ion-tab-button>
+           <ion-tab-button tab="payment">
+            <ion-icon src="assets/images/wallet.svg" class="ion-no-margin ion-no-padding"></ion-icon>
+             <ion-label class="tab-title">Payment</ion-label>
+           </ion-tab-button>
+         </ion-tab-bar>
+       </ion-tabs>
+     </ion-toolbar> 
+  </ion-footer>
