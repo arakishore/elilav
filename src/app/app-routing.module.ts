@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'registration',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -19,6 +19,15 @@ const routes: Routes = [
     path: 'registration',
     loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
   },
+  {
+    path: 'aboutus',
+    loadChildren: () => import('./pages/aboutus/aboutus.module').then( m => m.AboutusPageModule)
+  },
+  {
+    path: 'help',
+    loadChildren: () => import('./pages/help/help.module').then( m => m.HelpPageModule)
+  },
+ 
 ];
 
 @NgModule({

@@ -1,9 +1,86 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>login</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<ion-content class="ion-no-padding">
+  <div class="page-bg">
+    <div class="form-box ion-text-center mrgn-btm0 page-top-bg">
+      <ion-img src="http://elilav.microstopindia.com/uploaded/logo/logo.png"></ion-img>
+    </div>
+  </div>
+  <form class="login-form-area" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div class="login-area">
+            <div class="logo-bg-border">
+            
+            </div>
+            <div class="clearfix"></div>
+            <div class="reg-form">
+              <hr class="hr-border">
+              <div border-none class="form-box">                              
+                <h3 class="ion-text-center">microstopindia</h3>
+               
+               
+              </div>
+             
+              <div border-none class="form-box">                              
+                <ion-label position="stacked">Mobile</ion-label>
+                <div class="pos-rel">
+                  <ion-item lines="none" class="ion-no-padding">
+                    <ion-input class="form-input"  formControlName="user_mobile" type="tel" name="user_mobile"></ion-input>
+                    <div class="i-class">
+                      <ion-icon name="phone-portrait-outline"></ion-icon>
+                    </div> 
+                  </ion-item>                   
+                </div>
+                <span class="error-txt-msg" *ngIf="!form.controls.user_mobile.valid && form.controls['user_mobile'].errors.required && submitAttempt" text-left>Please enter your mobile number</span>
+                <span class="error-txt-msg" *ngIf="!form.controls.user_mobile.valid && form.controls['user_mobile'].errors.minlength && submitAttempt" text-left>Mobile no should be of 10 digit</span>  
+              </div>
 
+              <div border-none class="form-box pos-rel">
+                
+                  <ion-label position="stacked">Password</ion-label>
+                  <div class="pos-rel">   
+                    <ion-item lines="none" class="ion-no-padding">
+                    <ion-input class="form-input pass-input" formControlName="user_password" name="password" type="{{password_type}}"></ion-input>
+                    <div *ngIf="password_type == 'password'" (click)="togglePasswordMode('password')">
+                      <ion-icon name="eye" class="show_hide_pswd"></ion-icon>
+                    </div>
+                    <div *ngIf="password_type == 'text'" (click)="togglePasswordMode('text')">
+                      <ion-icon name="eye-off" class="show_hide_pswd"></ion-icon>
+                    </div>
+                    <div class="i-class">
+                      <ion-icon name="lock-open-outline"></ion-icon>
+                    </div>
+                    </ion-item>
+                    <span class="error-txt-msg" *ngIf="!form.controls.user_password.valid && form.controls['user_password'].errors.required && submitAttempt" text-left>Please enter your password</span>
+                    <span class="error-txt-msg" *ngIf="!form.controls.user_password.valid && form.controls['user_password'].errors.minlength && submitAttempt" text-left>Pin should be of 6 digits</span>                      
+                  </div>
+              </div>
+              <!-- <div class="form-box ion-text-center btn-area">
+                <ion-item lines="none" class="ion-no-padding">
+                  <ion-checkbox formControlName="Remember_Me"  color="secondary" slot="start"></ion-checkbox>
+                  <ion-label>Remember Me</ion-label>
+                </ion-item>
+              </div> -->
+              <div text-center class="form-box ion-text-center">
+                <ion-button size="" type="submit" expand="" class="ion-no-margin sbm-btn" color="">Login</ion-button>
+              </div>
+              <div  (click)="forget_password()" class="form-box">
+                <p class="ion-text-center mrgn-bttm0"><a>Forgot Password?</a></p>
+              </div>
+              <div  (click)="Sign_up()" text-center class="form-box">
+                <p class="ion-text-center mrgn-bttm0">Don't have an account? <span>Sign up here</span></p>
+              </div>
+              
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

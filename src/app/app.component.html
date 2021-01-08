@@ -1,3 +1,63 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-split-pane contentId="main-content">
+    <ion-menu [swipeGesture]="false" (ionDidOpen)="menuOpened()" contentId="main-content" type="overlay">
+      <div class="menu-border"></div>
+      <ion-content>
+        <div class="menu-profile ion-text-center ion-padding">
+          <!-- <ion-icon class="classicon" name="person"></ion-icon> -->
+          <div class="profile-img">
+            <!-- <ion-icon class="classicon" name="person"></ion-icon> -->
+            <div *ngIf="user_profile != ''" class="profile-img">
+              <img src="{{user_profile}}" />
+            </div>
+            <div class="menu-profile-details">                  
+              <h2>{{user_name}}</h2>             
+            </div>
+          </div>
+          <div class="menu-close" (click)="closeMenu()">
+            <!-- <img src="/assets/images/close-white.png" alt="Close"/> -->
+            <ion-icon class="closeIcon" name="close"></ion-icon>
+          </div>
+        </div>
+        <ion-list id="inbox-list">
+          <!-- <ion-list-header>Prajakta</ion-list-header> -->
+          <!-- <ion-note>hi@ionicframework.com</ion-note> -->
+          
+          <div *ngIf="candidate_or_employer == 'employer'"> <!--*ngIf="user_type == 'normal_user'"-->
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of company_login; let i = index">
+              <ion-item class="main-menu" id="menuBar"  routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" >
+                <ion-label class="menuText" text-wrap>
+                  <!-- <ion-icon color="light" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>  {{ p.title }} -->
+                  <ion-icon src="{{p.icon}}" name="{{p.icon}}" color="light" ></ion-icon> {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+          <div *ngIf="candidate_or_employer != 'employer'"> <!--*ngIf="user_type == 'normal_user'"-->
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of candiate_login; let i = index">
+              <ion-item class="main-menu" id="menuBar"  routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" >
+                <ion-label class="menuText" text-wrap>
+                  <!-- <ion-icon color="light" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>  {{ p.title }} -->
+                  <ion-icon src="{{p.icon}}" name="{{p.icon}}" color="light" ></ion-icon> {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+          <ion-menu-toggle auto-hide="false" no-lines ion-item (click)="logout()">
+            <ion-item color="none" lines="none" class="main-menu">
+          
+              <ion-label class="menuText">
+            
+                <ion-icon name="log-out" color="light" ></ion-icon> Logout
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+       
+        </ion-list>
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>
