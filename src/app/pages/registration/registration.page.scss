@@ -1,0 +1,28 @@
+.content-wrap{padding: 15px 0;}
+form{margin-top:20px;}
+.forget-password-btn a{color: #131313; cursor:pointer;}
+.forget-password-btn a:hover{color:#e64040;}
+.or-box{margin-top: 15px;  margin-bottom: 15px;  text-align:center;  color:#7b7b7b;  position:relative;}
+.or-box:before{content: ""; left: 0px; width: 45%; height: 1px; background: #7b7b7b; position: absolute; top: 13px;}
+.or-box:after{content: ""; right: 0px; width: 45%; height: 1px; background: #7b7b7b; position: absolute; top: 13px;}
+.footer-link{margin-top: 50px; margin-bottom: 20px;}
+.facebook-btn{background: #2e60d3;}
+.facebook-btn .icon{display: block; position: absolute; width: 30px;}
+.facebook-btn .icon:after{content: ""; height: 41px; width: 1px; background: #C6C6C6; position: absolute; margin-left: 23px; top: -10px;}
+ion-segment {border-bottom: 1px solid #dcdcdc;}
+ion-segment-button.segment-button-checked{--background-checked: #085bb5; --background-hover: #085bb5; --background-focused: #085bb5; border-radius: 8px 8px 0px 0px; --color-checked: #085bb5; --indicator-box-shadow: none; --indicator-color: #085bb5;}
+ion-segment-button.segment-button-checked ion-label{color: #fff;}
+.content-wrap1{height: 26px;}
+.icon-left .form-control {
+    --padding-start: 0px;
+}
+ionic-selectable{padding-left: 0;}
+.footer-link a {
+    color: #009544 !important;
+    cursor: pointer;
+ }
+ .underline {
+   // font-size: 20px;
+    text-decoration: underline;
+    
+}

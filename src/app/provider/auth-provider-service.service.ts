@@ -17,6 +17,7 @@ export class AuthProviderServiceService {
   // base_url: any = 'http://cafen.datagrid.co.in/API/';
 
   base_url: any = 'https://www.everestjewels.in/';
+  token: string;
  
 
 
@@ -67,6 +68,152 @@ export class AuthProviderServiceService {
 
 
 
+
+
+  public Registration_Candidate(form: any,candidate_or_employer: any) {
+    const tmp_user: any = {};
+    tmp_user.first_name = form.first_name;
+    tmp_user.middle_name = form.middle_name;
+    tmp_user.last_name = form.last_name;
+    tmp_user.email = form.email;
+    tmp_user.mobile_num = form.mobile_num;
+    tmp_user.password = form.user_password;
+    tmp_user.confirm_password = form.confirm_password;
+    tmp_user.candidate_or_employer = candidate_or_employer;
+    tmp_user.country_code = form.country_code.phonecode;
+   
+   // tmp_user.user_type = form.user_type;
+   // tmp_user.fcm_id = localStorage.getItem('fcmid');
+
+
+
+    /*  Convert Object to Post  */
+    const post_data = this.encodeParam(tmp_user);
+    /*  Headers  */
+    const arr_header: any = {};
+
+    this.appKey = localStorage.getItem('appKey');
+
+     arr_header.headers = { 'Content-Type': 'application/x-www-form-urlencoded',};
+  //  
+  // 
+   // arr_header.headers = { 'Content-Type': 'application/json'};
+   // arr_header.headers = { 'appKey': this.appKey };
+
+    return this.http.post(this.base_url + 'signup', post_data, arr_header).pipe(map(response => {
+      console.log(response);
+      const tmp_response: any = response;
+
+      if (tmp_response.status === 'SUCCESS') {
+        console.log(tmp_response);
+
+      }
+      return tmp_response;
+    }));
+  }
+
+          /* Mobile/Email Duplication Start */
+          public Mobile_Duplicate(field: any, value: any,candidate_or_employer: any) {
+            const tmp_user: any = {};
+         ///   tmp_user.field = field;
+  
+         const formData = new FormData();
+         const date = new Date().valueOf();
+  
+        formData.append('phone', value);
+        formData.append('candidate_or_employer',candidate_or_employer);
+   
+        
+            /*  Convert Object to Post  */
+            const post_data = this.encodeParam(tmp_user);
+            /*  Headers  */
+            const arr_header: any = {};
+        
+            this.token = localStorage.getItem('token');
+            console.log('Your token is', this.token);
+             arr_header.headers = { 'Content-Type': 'application/x-www-form-urlencoded'};
+      
+     
+     
+            // arr_header.headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'appKey': this.appKey };
+        
+            return this.http.post(this.base_url + 'check_contact_duplication',  formData).pipe(map(response => {
+              console.log(response);
+              const tmp_response: any = response;
+        
+              if (tmp_response.status == 'SUCCESS') {
+                console.log(tmp_response);
+              }
+              return tmp_response;
+            }));
+          }
+
+
+                  /* Mobile/Email Duplication Start */
+        public email_Duplicate(field: any, value: any,candidate_or_employer: any) {
+          const tmp_user: any = {};
+       ///   tmp_user.field = field;
+
+       const formData = new FormData();
+       const date = new Date().valueOf();
+
+      formData.append('email', value);
+      formData.append('candidate_or_employer',candidate_or_employer);
+ 
+    
+      
+          /*  Convert Object to Post  */
+          const post_data = this.encodeParam(tmp_user);
+          /*  Headers  */
+          const arr_header: any = {};
+      
+          this.token = localStorage.getItem('token');
+          console.log('Your token is', this.token);
+           arr_header.headers = { 'Content-Type': 'application/x-www-form-urlencoded'};
+    
+   
+   
+          // arr_header.headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'appKey': this.appKey };
+      
+          return this.http.post(this.base_url + 'check_email_duplication',  formData).pipe(map(response => {
+            console.log(response);
+            const tmp_response: any = response;
+      
+            if (tmp_response.status == 'SUCCESS') {
+              console.log(tmp_response);
+            }
+            return tmp_response;
+          }));
+        }
+        public get_Country_code() {
+          const tmp_user: any = {};
+        
+          
+      
+          /*  Convert Object to Post  */
+          const post_data = this.encodeParam(tmp_user);
+          /*  Headers  */
+          const arr_header: any = {};
+      
+          this.appKey = localStorage.getItem('appKey');
+      
+           arr_header.headers = { 'Content-Type': 'application/x-www-form-urlencoded'};
+          
+         
+         
+         // arr_header.headers = { 'appKey': this.appKey };
+      
+          return this.http.post(this.base_url + 'get_country_code', arr_header).pipe(map(response => {
+            console.log(response);
+            const tmp_response: any = response;
+      
+            if (tmp_response.status === 'SUCCESS') {
+              console.log(tmp_response);
+      
+            }
+            return tmp_response;
+          }));
+        }
 
   public setCredentialsInLocal(userInfo: any) {
     console.log('userInfo 111' ,JSON.stringify( userInfo));

@@ -1,37 +1,180 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>registration</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="page-background">
+  <div class="container">
+    <div class="content-wrap">
+      <div class="logo">
+        <ion-img src="http://elilav.microstopindia.com/uploaded/logo/logo.png"></ion-img>
+      </div>
+  
+      <div class="content-wrap1"></div>
+   
+  
+      <div>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="login-form-area">
+          <ion-radio-group formControlName="Buyers_or_sellers_or_both"  (ionSelect)="godefault_cv($event)" (ionChange)="onChangeHandler($event)">
+            <ion-item>
+              <ion-label>Buyers</ion-label>
+              <ion-radio  value="Buyers" ></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>sellers</ion-label>
+              <ion-radio  value="sellers" ></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>both</ion-label>
+              <ion-radio value="both" ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="Full_name" placeholder="Full name *"  type="text" name="Full_name"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.Full_name.valid && form.controls['Full_name'].errors.required && submitAttempt1" text-left>Please enter your Full name</span>
+          </div>
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="Username" placeholder="Username" type="text" name="Username"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.Username.valid && form.controls['Username'].errors.required && submitAttempt1" text-left>Please enter Username</span>
+          </div>
 
-<ion-content>
-registration
-</ion-content>
-<ion-footer >
-  <ion-toolbar class="footer-toolbar">
-     <ion-tabs>
-         <ion-tab-bar class="tab-bar farmer-tab-bar" slot="bottom" >
-           <ion-tab-button (click)="goToproductlist();" tab="home">
-            <ion-icon src="assets/images/ring.svg" class="ion-no-margin ion-no-padding"></ion-icon>
-             <ion-label class="tab-title">Product</ion-label>
-           </ion-tab-button>
-           <ion-tab-button (click)="goToExhibitionPage();"   tab="exhibition">
-            <ion-icon src="assets/images/diamond.svg" class="ion-no-margin ion-no-padding"></ion-icon>
-             <ion-label class="tab-title">Exhibition</ion-label>
-           </ion-tab-button>
-           <ion-tab-button  (click)="goToMyProfile();" tab="my-profile">
-            <ion-icon src="assets/images/user.svg" class="ion-no-margin ion-no-padding"></ion-icon>
-             <ion-label class="tab-title">My Profile</ion-label>
-           </ion-tab-button>
-           <ion-tab-button (click)="goToEnquiry();" tab="enquiry">
-            <ion-icon src="assets/images/enquiry.svg" class="ion-no-margin ion-no-padding"></ion-icon>
-             <ion-label class="tab-title">Enquiry</ion-label>
-           </ion-tab-button>
-           <ion-tab-button tab="payment">
-            <ion-icon src="assets/images/wallet.svg" class="ion-no-margin ion-no-padding"></ion-icon>
-             <ion-label class="tab-title">Payment</ion-label>
-           </ion-tab-button>
-         </ion-tab-bar>
-       </ion-tabs>
-     </ion-toolbar> 
-  </ion-footer>
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="user_password" placeholder="Password *" required="required" type="password" name="user_password"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.user_password.valid && form.controls['user_password'].errors.required && submitAttempt1" text-left>Please enter password</span>
+            <span class="error-txt-msg" *ngIf="!form.controls.user_password.valid && form.controls['user_password'].errors.minlength && submitAttempt1" text-left>Password should be of 6 characters</span>                      
+        
+            
+          </div>
+  
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="confirm_password" placeholder="Confirm Password *" required="required" type="password" name="confirm_password"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.confirm_password.valid && form.controls['confirm_password'].errors.required && (form.controls.confirm_password.dirty || submitAttempt1)" text-left>Please enter confirm password</span>
+            <span class="error-txt-msg" *ngIf="form.hasError('mismatchedPasswords') && form.controls.confirm_password.valid && (form.controls.confirm_password.dirty || submitAttempt1)" text-left>Confirm password should be same !</span>
+  
+          </div>
+
+
+        <div class="form-group icon-left">
+          <div class="icon"><img src="../../../assets/images/email.svg" class="width-100"/></div>
+          <ion-item lines="none" class="ion-no-padding">
+            <ion-label class="form-label" position="stacked">Date of Birth <span>*</span></ion-label>
+            <ion-datetime class="form-input" max="{{latest_date}}" id="dynamicDisabled" formControlName="date_of_birth"  displayFormat="DD-MM-YYYY"></ion-datetime>
+          </ion-item>
+          <span class="error-txt-msg" *ngIf="!form.controls.date_of_birth.valid && form.controls['date_of_birth'].errors.required && submitAttempt1" text-left>Please select date of birth </span>
+        </div>
+
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input (ionChange)="searchEmail(form.controls.email.valid, form.controls.email.value,'candidate')" class="form-control" formControlName="email" placeholder="Your e-mail address *" required="required" type="text" name="email"></ion-input>
+          </ion-item>
+            <!-- <span class="error-txt-msg" *ngIf="!form.controls.email.valid && form.controls['email'].errors.pattern && (form.controls.email.dirty || submitAttempt1)" text-left>Please enter valid email id.</span> -->
+            <span class="error-txt-msg" *ngIf="!form.controls.email.valid && form.controls['email'].errors.required && submitAttempt1" text-left>Please enter your email id</span>
+            <span class="error-txt-msg" *ngIf="!form.controls.email.valid && form.controls['email'].errors.pattern && submitAttempt1" text-left>Please enter valid email id</span>
+            <span class="error-txt-msg" *ngIf="is_duplicate_email" text-left>{{responseMsg_email}}</span>
+          </div>
+  
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="Address" placeholder="Last Name *"  type="text" name="Address"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.Address.valid && form.controls['Address'].errors.required && submitAttempt1" text-left>Please enter your Address</span>
+          </div>
+
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="City" placeholder="City *"  type="text" name="City"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.City.valid && form.controls['City'].errors.required && submitAttempt1" text-left>Please enter your City</span>
+          </div>
+
+
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="State_Province" placeholder="State/Province *"  type="text" name="State_Province"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.State_Province.valid && form.controls['State_Province'].errors.required && submitAttempt1" text-left>Please enter State/Province</span>
+          </div>
+          
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ionic-selectable
+            formControlName="country_code"
+          
+            [items]="countries"
+            itemValueField="phonecode"
+            itemTextField="name"
+           
+            [canSearch]="true"
+            [canClear]="true"
+            class="ion-no-margin form-control"
+            placeholder="-Select Country- *"
+            [hasVirtualScroll]="true"
+            [isOnSearchEnabled]="false"
+            [canClear]="true"
+            [searchFailText]="'Country not found.'">
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <ion-icon name="close-circle"></ion-icon>
+            </ng-template>
+            </ionic-selectable> 
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.country_code.valid && form.controls['country_code'].errors.required && submitAttempt1" text-left>Please enter your country code</span>
+          </div>
+
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="pincode" placeholder="ZIP/Post Code *"  type="tel" name="pincode"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.pincode.valid && form.controls['pincode'].errors.required && submitAttempt1" text-left>Please enter your ZIP/Post Code</span>
+            <span class="error-txt-msg" *ngIf="!form.controls.pincode.valid && form.controls['pincode'].errors.minlength && submitAttempt1" text-left>ZIP/Post Code should be of 6 digit</span>
+          </div>
+  
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input (ionChange)="searchMobile('mobile', form.controls.mobile_num.value,'candidate')" [brmasker]="{len:10}" class="form-control" formControlName="mobile_num" placeholder="Mobile number*" required="required" type="tel" name="mobile_num"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.mobile_num.valid && form.controls['mobile_num'].errors.required && submitAttempt1" text-left>Please enter your mobile number</span>
+            <span class="error-txt-msg" *ngIf="!form.controls.mobile_num.valid && form.controls['mobile_num'].errors.minlength && submitAttempt1" text-left>Mobile no should be of 10 digit</span>                      
+            <span class="error-txt-msg" *ngIf="is_duplicate" text-left>{{responseMsg}}</span>
+          </div>
+  
+        
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="pancard" placeholder="Pancard *"  type="tel" name="pancard"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.pancard.valid && form.controls['pancard'].errors.required && submitAttempt1" text-left>Please enter your pancard Code</span>
+            <span class="error-txt-msg" *ngIf="!form.controls.pancard.valid && form.controls['pancard'].errors.minlength && submitAttempt1" text-left>pancard should be of 6 digit</span>
+          </div>
+
+          <div class="form-group">
+            <ion-item lines="none" class="ion-no-padding">
+            <ion-input class="form-control" formControlName="Aadhar" placeholder="Aadhar card *"  type="text" name="pancard"></ion-input>
+          </ion-item>
+            <span class="error-txt-msg" *ngIf="!form.controls.Aadhar.valid && form.controls['Aadhar'].errors.required && submitAttempt1" text-left>Please enter your Aadhar card</span>
+            <span class="error-txt-msg" *ngIf="!form.controls.Aadhar.valid && form.controls['Aadhar'].errors.minlength && submitAttempt1" text-left>Aadhar card should be of 6 digit</span>
+          </div>
+      
+          
+          <div class="form-group">
+                              
+            <div class="prof-head-cont"> 
+              <ion-checkbox slot="end" (ionChange)="status_visible($event);" [checked]="Status"></ion-checkbox> <a  (click)="termcondition()" class=""><span>I accept Terms of Use *</span></a>
+            </div>
+            <span class="error-txt-msg" *ngIf="!Status &&  submitAttempt1" text-left>Please accept terms and conditions</span>
+          
+          </div>
+          <button type="submit" class="btn btn-primary margin-top-40">Register</button>
+    
+        </form>
+      </div>
+  
+ 
+      <div class="footer-link">Have Account? <a (click)="loginPage()"> Sign in</a></div>
+    </div>
+  </div>
+  </ion-content>
+  

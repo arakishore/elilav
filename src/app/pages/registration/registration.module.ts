@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { RegistrationPageRoutingModule } from './registration-routing.module';
-
+import { IonicSelectableModule } from 'ionic-selectable';
+import { BrMaskerModule } from 'br-mask';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationPage } from './registration.page';
 
 @NgModule({
@@ -13,6 +15,9 @@ import { RegistrationPage } from './registration.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
+    BrMaskerModule,
+    IonicSelectableModule,
     RegistrationPageRoutingModule
   ],
   declarations: [RegistrationPage]
